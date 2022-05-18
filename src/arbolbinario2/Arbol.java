@@ -323,52 +323,53 @@ public class Arbol {
         }       
     }*/
     
-    public void imprimirEntreConNivel (Pila pila,NodoArbol1 r,int nivel, boolean val, int nivel2)  {
+    public void imprimirEntreConNivel (Cola cola,NodoArbol1 r,int nivel, boolean val, int nivel2)  {
         boolean validador = val;             
         if (r != null) {          
             System.out.println("dentro del if diferente de null");
             if(nivel == nivel2){
                 System.out.println("dentro del nivel "+ nivel);
-                pila.push(r.dato1);
+                cola.push(r.dato1);
                 validador = true;
             }       
-            imprimirEntreConNivel (pila, r.hijoDerecho1,nivel+1, val, nivel2);
-            imprimirEntreConNivel (pila, r.hijoIzquierdo1,nivel+1, validador, nivel2);   
+            imprimirEntreConNivel (cola, r.hijoDerecho1,nivel+1, val, nivel2);
+            imprimirEntreConNivel (cola, r.hijoIzquierdo1,nivel+1, validador, nivel2);   
         }      
     }
     
-    public void transversal(Pila pila, NodoArbol1 r){
+    public void transversal(Cola cola, NodoArbol1 r){
         int cont = 1;
         int contAux = alturaArbol(r);
         System.out.println("El límitre es:"+ contAux);
         for(int i = 0; i < 4; i ++){
             if( cont == 1){
             System.out.println("Nivel 1");
-            imprimirEntreConNivel (pila,r, 1, false, 1);
+            imprimirEntreConNivel (cola,r, 1, false, 1);
             cont ++;
             System.out.println("El contador es:"+ cont);
             }        
             else if( cont == 2){
                 System.out.println("nivel 2");
-                imprimirEntreConNivel (pila, r, 1, false, 2);
+                imprimirEntreConNivel (cola, r, 1, false, 2);
                 cont ++;
                 System.out.println("El contador es:"+ cont);
             }
             else if( cont == 3){
                 System.out.println("nivel 3");
-                imprimirEntreConNivel (pila, r, 1, false, 3);
+                imprimirEntreConNivel (cola, r, 1, false, 3);
                 cont++;
                 System.out.println("El contador es:"+ cont);
             }
             else if( cont == 4){
                 System.out.println("nivel 4");
-                imprimirEntreConNivel (pila, r, 1, false, 4);
+                imprimirEntreConNivel (cola, r, 1, false, 4);
                 cont++;
                 System.out.println("El contador es:"+ cont);
             }
             
         }
-        pila.imprimirPilaA();
+        //pila.imprimirPilaA();
+        cola.imprimirDatos();
         
     }
 }
