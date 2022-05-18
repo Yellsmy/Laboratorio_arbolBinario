@@ -270,7 +270,7 @@ public class Arbol {
     }
     
     //Método para saber si el árbol binario está completo
-    /*public boolean completo1(NodoArbol1 r){
+    public boolean completo(NodoArbol1 r){
         boolean a = false;
         NodoArbol1 temp = r;
         NodoArbol1 temp2 = null;
@@ -294,17 +294,109 @@ public class Arbol {
     }
     
     //Método para recorrer el árbol por niveles
-    public boolean ordenTransversal(NodoArbol1 r1){
+    /*public void ordenTransversal(NodoArbol1 r1){
         NodoArbol1 temp = r1;
         NodoArbol1 temp2 = null;
-        if( r1 == null) return true;
-        Cola cola = new Cola();
-        cola.push(temp.dato1);
-        while(cola.vacia() != false){
-            temp = cola.pop();
-            
+        Cola<NodoArbol1> cola = new Cola();
+        if(r1 != null){
+            System.out.println("Ingreso del primer dato");
+            cola.push(r1);
         }
+        cola.imprimirDatos();
+        while(cola.primero == null){
+            System.out.println("la cola no está vacía");
+            int tamanio = cola.size();
+            System.out.println("El tamaño de la cola es: "+tamanio);
+            for(int i = 0; i < tamanio; i ++){
+                System.out.println("dentro del for");
+                NodoArbol1 n = cola.pop();
+                System.out.println("dato: "+ n.dato1);
+                if(n.hijoIzquierdo1 != null){
+                    System.out.println("Izquierdo");
+                    cola.push(n.hijoIzquierdo1);
+                }
+                if(n.hijoDerecho1 != null){
+                    System.out.println("derecho");
+                    cola.push(n.hijoDerecho1);
+                }
+            }
+        }       
     }*/
     
+    public void imprimirEntreConNivel (Pila pila,NodoArbol1 r,int nivel, boolean val, int nivel2)  {
+        boolean validador = val;             
+        if (r != null) {          
+            System.out.println("dentro del if diferente de null");
+            if(nivel == nivel2){
+                System.out.println("dentro del nivel "+ nivel);
+                pila.push(r.dato1);
+                validador = true;
+            }       
+            imprimirEntreConNivel (pila, r.hijoDerecho1,nivel+1, val, nivel2);
+            imprimirEntreConNivel (pila, r.hijoIzquierdo1,nivel+1, validador, nivel2);   
+        }      
+    }
     
+    public void transversal(Pila pila, NodoArbol1 r){
+        int cont = 1;
+        int contAux = alturaArbol(r);
+        System.out.println("El límitre es:"+ contAux);
+        for(int i = 0; i < 4; i ++){
+            if( cont == 1){
+            System.out.println("Nivel 1");
+            imprimirEntreConNivel (pila,r, 1, false, 1);
+            cont ++;
+            System.out.println("El contador es:"+ cont);
+            }        
+            else if( cont == 2){
+                System.out.println("nivel 2");
+                imprimirEntreConNivel (pila, r, 1, false, 2);
+                cont ++;
+                System.out.println("El contador es:"+ cont);
+            }
+            else if( cont == 3){
+                System.out.println("nivel 3");
+                imprimirEntreConNivel (pila, r, 1, false, 3);
+                cont++;
+                System.out.println("El contador es:"+ cont);
+            }
+            else if( cont == 4){
+                System.out.println("nivel 4");
+                imprimirEntreConNivel (pila, r, 1, false, 4);
+                cont++;
+                System.out.println("El contador es:"+ cont);
+            }
+            
+        }
+        pila.imprimirPilaA();
+        
+    }
 }
+
+/*
+if( r1 != null || cola.vacia() != false)
+            if(r1 != null){
+                cola.push(temp);
+                temp = temp.hijoIzquierdo1;
+                
+                if(temp.hijoDerecho1 == null || temp.hijoDerecho1 == temp2){
+                    cola.pop();
+                    temp2 = temp;
+                    temp = null;
+                }else{
+                    temp = temp.hijoDerecho1;
+                }
+                temp = cola.pop();
+                System.out.println("El dato desencolado es: "+temp.dato1);
+
+                if(r1.hijoIzquierdo1!= null){
+                    cola.push(r1.hijoIzquierdo1);
+                }
+                if(r1.hijoDerecho1 != null){
+                    cola.push(r1.hijoDerecho1);
+                
+
+                }
+            }
+        
+*/

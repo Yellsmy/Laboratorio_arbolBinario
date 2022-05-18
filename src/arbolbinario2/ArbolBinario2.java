@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class ArbolBinario2 {
     Scanner op = new Scanner(System.in);
     Arbol ArbolB = new Arbol();
+    Pila pila = new Pila(); 
     
     public void menu(){
         boolean salir = false;
@@ -118,6 +119,11 @@ public class ArbolBinario2 {
             case 13:
                 
                 break;            
+            case 14:
+                ArbolB.transversal(pila, ArbolB.raiz);
+                //ArbolB.imprimirEntreConNivel(ArbolB.raiz, 1, false, 1);
+                //ArbolB.ordenTransversal(ArbolB.raiz);
+                break;
             case 0:
                 salir = true;               
                 break;
