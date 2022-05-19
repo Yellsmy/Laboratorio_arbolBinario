@@ -48,7 +48,7 @@ public class Cola{
     public void imprimirDatos(){
         NodoCola temp = primero;
         while(temp!= null){
-            System.out.println("[" + temp.dato + "]");
+            System.out.print(temp.dato +",");
             temp = temp.siguiente;
         }
     }

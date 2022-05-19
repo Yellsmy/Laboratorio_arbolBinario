@@ -78,41 +78,41 @@ public class Arbol {
     }
     
     //Método para mostrar los datos en PreOrden del primer árbol
-    public void ImprimirPreOrden(NodoArbol1 r){
+    public void imprimirPreOrden(NodoArbol1 r){
         System.out.print(" "+r.dato1);     //Mostramos posición actual
         if(r.hijoIzquierdo1 != null){   //Entra a la posición izquierda del árbol siempre que no sea null
-            ImprimirPreOrden(r.hijoIzquierdo1);}  //Volvemos a llamar a la función hasta que la posición izquierda sea null
+            imprimirPreOrden(r.hijoIzquierdo1);}  //Volvemos a llamar a la función hasta que la posición izquierda sea null
         if(r.hijoDerecho1 != null){ //Entramos a la posición derecha siempre que sea diferente de null, si es null continua con el resto del código 
-            ImprimirPreOrden(r.hijoDerecho1); //Si tiene posición derecha se llama a la función nuevamente hasta que la posición derecha sea null
+            imprimirPreOrden(r.hijoDerecho1); //Si tiene posición derecha se llama a la función nuevamente hasta que la posición derecha sea null
         }                 
     }
     
     //Método para mostrar los datos InOrden del primer árbol
-    public void ImprimirInOrden(NodoArbol1 r){
+    public void imprimirInOrden(NodoArbol1 r){
         if(r.hijoIzquierdo1 != null){   //Entra a la posición izquierda del árbol siempre que no sea null
-            ImprimirInOrden(r.hijoIzquierdo1);}  //Volvemos a llamar a la función hasta que la posición izquierda sea null
+            imprimirInOrden(r.hijoIzquierdo1);}  //Volvemos a llamar a la función hasta que la posición izquierda sea null
         System.out.print(" "+r.dato1);     //Mostramos posición actual
         if(r.hijoDerecho1 != null){ //Entramos a la posición derecha siempre que sea diferente de null, si es null continua con el resto del código 
-            ImprimirInOrden(r.hijoDerecho1); //Si tiene posición derecha se llama a la función nuevamente hasta que la posición derecha sea null
+            imprimirInOrden(r.hijoDerecho1); //Si tiene posición derecha se llama a la función nuevamente hasta que la posición derecha sea null
         }         
     }
     
     //Método para mostrar los datos InOrden del segundo árbol
-    public void ImprimirInOrden2(NodoArbol2 r2){
+    public void imprimirInOrden2(NodoArbol2 r2){
         if(r2.hijoIzquierdo2 != null){   //Entra a la posición izquierda del árbol siempre que no sea null
-            ImprimirInOrden2(r2.hijoIzquierdo2);}  //Volvemos a llamar a la función hasta que la posición izquierda sea null
+            imprimirInOrden2(r2.hijoIzquierdo2);}  //Volvemos a llamar a la función hasta que la posición izquierda sea null
         System.out.print(" "+r2.dato2);     //Mostramos posición actual
         if(r2.hijoDerecho2 != null){ //Entramos a la posición derecha siempre que sea diferente de null, si es null continua con el resto del código 
-            ImprimirInOrden2(r2.hijoDerecho2); //Si tiene posición derecha se llama a la función nuevamente hasta que la posición derecha sea null
+            imprimirInOrden2(r2.hijoDerecho2); //Si tiene posición derecha se llama a la función nuevamente hasta que la posición derecha sea null
         }         
     }
     
     //Método para mostrar los datos en PostOrden del primer árbol
-    public void ImprimirPostOrden(NodoArbol1 r){
+    public void imprimirPostOrden(NodoArbol1 r){
         if(r.hijoIzquierdo1 != null){   //Entra a la posición izquierda del árbol siempre que no sea null
-            ImprimirPostOrden(r.hijoIzquierdo1);}  //Volvemos a llamar a la función (recursividad) hasta que la posición izquierda sea null
+            imprimirPostOrden(r.hijoIzquierdo1);}  //Volvemos a llamar a la función (recursividad) hasta que la posición izquierda sea null
         if(r.hijoDerecho1 != null){ //Entramos a la posición derecha siempre que sea diferente de null, si es null continua con el resto del código 
-            ImprimirPostOrden(r.hijoDerecho1); //Si tiene posición derecha se llama a la función nuevamente hasta que la posición derecha sea null
+            imprimirPostOrden(r.hijoDerecho1); //Si tiene posición derecha se llama a la función nuevamente hasta que la posición derecha sea null
         }
         System.out.print(" "+r.dato1);     //Mostramos posición actual
     }
@@ -122,7 +122,7 @@ public class Arbol {
         if(r != null){
             return 1 + Math.max(alturaArbol(r.hijoIzquierdo1), alturaArbol(r.hijoDerecho1)); //Compara ambos lados y saca el máximo, a eso se le suma 1 que es el nivel donde está la raíz   
        }   
-        return -1;         
+        return 0;         
     }
     
     //Método para mostrar la altura del segundo árbol
@@ -130,11 +130,11 @@ public class Arbol {
         if(r2 != null){
             return 1 + Math.max(alturaArbol2(r2.hijoIzquierdo2), alturaArbol2(r2.hijoDerecho2)); //Compara ambos lados y saca el máximo, a eso se le suma 1 que es el nivel donde está la raíz   
        }   
-        return -1;         
+        return 0;         
     }
     
     //Método para buscar un dato dentro del primer árbol
-    public int Buscar(int dato){
+    public int buscar(int dato){
         NodoArbol1 temp = raiz;
         while(temp.dato1 != dato){ //Siempre que el dato buscado no sea igual al dato en el árbol, entonces que lo busque
             if( dato < temp.dato1){ // si el dato buscado es menor que la raiz es porque el dato buscado está del lado izquierdo
@@ -269,6 +269,69 @@ public class Arbol {
         return bandera;
     }
     
+    //Método para que ingrese dato a la cola
+    public void encolarPorNivel (Cola cola,NodoArbol1 r,int nivel, int nivel2){            
+        if (r != null) {
+            if(nivel == nivel2){
+                cola.push(r.dato1);
+            }                
+            encolarPorNivel (cola, r.hijoIzquierdo1,nivel+1, nivel2); 
+            encolarPorNivel (cola, r.hijoDerecho1,nivel+1, nivel2);
+        }      
+    }
+    
+    public void transversal(Cola cola, NodoArbol1 r){
+        int cont = 1;
+        int contAux = alturaArbol(r);
+        for(int i = 0; i < contAux; i ++){
+            if( cont == 1){ 
+            encolarPorNivel (cola,r, 1, 1);
+            cont ++;
+            }        
+            else if( cont == 2){
+                encolarPorNivel (cola, r, 1,  2);
+                cont ++;
+            }
+            else if( cont == 3){
+                encolarPorNivel (cola, r, 1, 3);
+                cont++;
+            }
+            else if( cont == 4){
+                encolarPorNivel (cola, r, 1, 4);
+                cont++;
+            }
+            else if( cont == 5){
+                encolarPorNivel (cola, r, 1, 4);
+                cont++;
+            }
+            else if( cont == 6){
+                encolarPorNivel (cola, r, 1, 4);
+                cont++;
+            }          
+        }cola.imprimirDatos();      
+    }
+    
+    public boolean arbolCompleto(NodoArbol1 r1, int level){
+        int nivel = level;
+        int contAux = alturaArbol(raiz);
+        if(r1 == null) return true;
+        
+        if(r1 != null){
+            if(nivel == 1 || nivel == 2 || nivel == contAux-1){
+                if(r1.hijoIzquierdo1 != null){
+                    return false;
+                }               
+            }
+            else if(r1.hijoIzquierdo1 != null && r1.hijoDerecho1 == null || r1.hijoIzquierdo1 == null && r1.hijoDerecho1 != null ){
+                return false;                  
+            }
+        }
+        return arbolCompleto(r1.hijoIzquierdo1, nivel+1) && arbolCompleto(r1.hijoDerecho1, nivel+1);
+    }
+    
+}
+
+/*
     //Método para saber si el árbol binario está completo
     public boolean completo(NodoArbol1 r){
         boolean a = false;
@@ -292,112 +355,4 @@ public class Arbol {
             
         }return a;    
     }
-    
-    //Método para recorrer el árbol por niveles
-    /*public void ordenTransversal(NodoArbol1 r1){
-        NodoArbol1 temp = r1;
-        NodoArbol1 temp2 = null;
-        Cola<NodoArbol1> cola = new Cola();
-        if(r1 != null){
-            System.out.println("Ingreso del primer dato");
-            cola.push(r1);
-        }
-        cola.imprimirDatos();
-        while(cola.primero == null){
-            System.out.println("la cola no está vacía");
-            int tamanio = cola.size();
-            System.out.println("El tamaño de la cola es: "+tamanio);
-            for(int i = 0; i < tamanio; i ++){
-                System.out.println("dentro del for");
-                NodoArbol1 n = cola.pop();
-                System.out.println("dato: "+ n.dato1);
-                if(n.hijoIzquierdo1 != null){
-                    System.out.println("Izquierdo");
-                    cola.push(n.hijoIzquierdo1);
-                }
-                if(n.hijoDerecho1 != null){
-                    System.out.println("derecho");
-                    cola.push(n.hijoDerecho1);
-                }
-            }
-        }       
-    }*/
-    
-    public void imprimirEntreConNivel (Cola cola,NodoArbol1 r,int nivel, boolean val, int nivel2)  {
-        boolean validador = val;             
-        if (r != null) {          
-            System.out.println("dentro del if diferente de null");
-            if(nivel == nivel2){
-                System.out.println("dentro del nivel "+ nivel);
-                cola.push(r.dato1);
-                validador = true;
-            }       
-            imprimirEntreConNivel (cola, r.hijoDerecho1,nivel+1, val, nivel2);
-            imprimirEntreConNivel (cola, r.hijoIzquierdo1,nivel+1, validador, nivel2);   
-        }      
-    }
-    
-    public void transversal(Cola cola, NodoArbol1 r){
-        int cont = 1;
-        int contAux = alturaArbol(r);
-        System.out.println("El límitre es:"+ contAux);
-        for(int i = 0; i < 4; i ++){
-            if( cont == 1){
-            System.out.println("Nivel 1");
-            imprimirEntreConNivel (cola,r, 1, false, 1);
-            cont ++;
-            System.out.println("El contador es:"+ cont);
-            }        
-            else if( cont == 2){
-                System.out.println("nivel 2");
-                imprimirEntreConNivel (cola, r, 1, false, 2);
-                cont ++;
-                System.out.println("El contador es:"+ cont);
-            }
-            else if( cont == 3){
-                System.out.println("nivel 3");
-                imprimirEntreConNivel (cola, r, 1, false, 3);
-                cont++;
-                System.out.println("El contador es:"+ cont);
-            }
-            else if( cont == 4){
-                System.out.println("nivel 4");
-                imprimirEntreConNivel (cola, r, 1, false, 4);
-                cont++;
-                System.out.println("El contador es:"+ cont);
-            }
-            
-        }
-        //pila.imprimirPilaA();
-        cola.imprimirDatos();
-        
-    }
-}
-
-/*
-if( r1 != null || cola.vacia() != false)
-            if(r1 != null){
-                cola.push(temp);
-                temp = temp.hijoIzquierdo1;
-                
-                if(temp.hijoDerecho1 == null || temp.hijoDerecho1 == temp2){
-                    cola.pop();
-                    temp2 = temp;
-                    temp = null;
-                }else{
-                    temp = temp.hijoDerecho1;
-                }
-                temp = cola.pop();
-                System.out.println("El dato desencolado es: "+temp.dato1);
-
-                if(r1.hijoIzquierdo1!= null){
-                    cola.push(r1.hijoIzquierdo1);
-                }
-                if(r1.hijoDerecho1 != null){
-                    cola.push(r1.hijoDerecho1);
-                
-
-                }
-            }
-        
 */

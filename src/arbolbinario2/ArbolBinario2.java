@@ -47,24 +47,24 @@ public class ArbolBinario2 {
             case 3:
                 System.out.println("--------PREORDEN---------");
                 if( ArbolB.vacio()== false){
-                    ArbolB.ImprimirPreOrden(ArbolB.raiz);
+                    ArbolB.imprimirPreOrden(ArbolB.raiz);
                 }                    
                 break;           
             case 4:
                 System.out.println("--------INORDEN---------");
                 if( ArbolB.vacio()== false){
-                    ArbolB.ImprimirInOrden(ArbolB.raiz);
+                    ArbolB.imprimirInOrden(ArbolB.raiz);
                 }         
                 break;
             case 5:
                 System.out.println("--------POSTORDEN---------");
                if( ArbolB.vacio()== false){
-                    ArbolB.ImprimirPostOrden(ArbolB.raiz);
+                    ArbolB.imprimirPostOrden(ArbolB.raiz);
                 }
                 break;
             case 6:
                 System.out.println("Ingrese búsqueda: ");
-                int busqueda = ArbolB.Buscar(op.nextInt());
+                int busqueda = ArbolB.buscar(op.nextInt());
                 if( busqueda == 0){
                     System.out.println("El dato buscado no existe en el árbol");
                 }else{
@@ -106,10 +106,10 @@ public class ArbolBinario2 {
                         System.out.println(" Los Árboles ingresados no son identicos");
                     }
                     System.out.println("El primer árbol es:");
-                    ArbolB.ImprimirInOrden(ArbolB.raiz);
+                    ArbolB.imprimirInOrden(ArbolB.raiz);
                     System.out.println("");
                     System.out.println("El segundo árbol es: ");
-                    ArbolB.ImprimirInOrden2(ArbolB.raiz2);                         
+                    ArbolB.imprimirInOrden2(ArbolB.raiz2);                         
                     }                               
                 break;
             case 12:
@@ -117,12 +117,18 @@ public class ArbolBinario2 {
                 System.out.println("Los árboles están vacios");
                 break;
             case 13:
-                
+                if(ArbolB.arbolCompleto(ArbolB.raiz, 1) == true){
+                    System.out.println("El árbol binario está completo");
+                    
+                }
+                else{
+                    System.out.println("Árbol binario incompleto");
+                }
+                System.out.println("El árbol es:");
+                ArbolB.imprimirInOrden(ArbolB.raiz);                   
                 break;            
             case 14:
                 ArbolB.transversal(cola, ArbolB.raiz);
-                //ArbolB.imprimirEntreConNivel(ArbolB.raiz, 1, false, 1);
-                //ArbolB.ordenTransversal(ArbolB.raiz);
                 break;
             case 0:
                 salir = true;               
