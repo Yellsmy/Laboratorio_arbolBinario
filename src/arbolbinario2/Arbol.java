@@ -269,7 +269,7 @@ public class Arbol {
         return bandera;
     }
     
-    //Método para que ingrese dato a la cola
+    //Método auxiliar para que ingrese dato a la cola
     public void encolarPorNivel (Cola cola,NodoArbol1 r,int nivel, int nivel2){            
         if (r != null) {
             if(nivel == nivel2){
@@ -280,6 +280,7 @@ public class Arbol {
         }      
     }
     
+    //Método para ordenar por niveles
     public void transversal(Cola cola, NodoArbol1 r){
         int cont = 1;
         int contAux = alturaArbol(r);
@@ -311,23 +312,32 @@ public class Arbol {
         }cola.imprimirDatos();      
     }
     
-    public boolean arbolCompleto(NodoArbol1 r1, int level){
-        int nivel = level;
-        int contAux = alturaArbol(raiz);
-        if(r1 == null) return true;
-        
-        if(r1 != null){
-            if(nivel == 1 || nivel == 2 || nivel == contAux-1){
-                if(r1.hijoIzquierdo1 != null){
+    //Método para saber si el árbol está completo
+    public boolean arbolCompleto(NodoArbol1 r,int nivel){
+        if(r == null){
+            return true;
+        }
+        if (r != null) {
+            int contAux = alturaArbol(raiz);
+            if(nivel > 2 && nivel < contAux){           
+                if(r.hijoIzquierdo1 != null && r.hijoDerecho1 == null || r.hijoIzquierdo1 == null && r.hijoDerecho1 != null){
                     return false;
-                }               
+                }                        
             }
-            else if(r1.hijoIzquierdo1 != null && r1.hijoDerecho1 == null || r1.hijoIzquierdo1 == null && r1.hijoDerecho1 != null ){
-                return false;                  
+            if(nivel == 1){
+                if(r.hijoIzquierdo1 != null && r.hijoDerecho1 == null || r.hijoIzquierdo1 == null && r.hijoDerecho1 != null){
+                    return false;
+                }                       
+            }        
+            if(nivel ==2 || nivel == contAux){
+                if(r.hijoIzquierdo1 == null &&r.hijoDerecho1!= null ){
+                    return false;
+                }
             }
         }
-        return arbolCompleto(r1.hijoIzquierdo1, nivel+1) && arbolCompleto(r1.hijoDerecho1, nivel+1);
+        return arbolCompleto ( r.hijoIzquierdo1,nivel+1) && arbolCompleto ( r.hijoDerecho1,nivel+1);
     }
+
     
 }
 
@@ -355,4 +365,57 @@ public class Arbol {
             
         }return a;    
     }
+
+    
+    public boolean arbolCompleto(NodoArbol1 r1, int level){
+        System.out.println("INICIO");
+        int nivel = level;
+        int contAux = alturaArbol(raiz);
+        if(r1 == null) return true;
+        System.out.println("El nivel es: "+nivel);
+        System.out.println("los niveles son: "+contAux);
+        System.out.println("dato: "+r1.dato1+nivel);
+        if( nivel == contAux){
+            System.out.println("dato: "+r1.dato1+nivel);
+            System.out.println("El nivel es: "+nivel);
+            System.out.println("dentro del if es mayor que 2 y menor que el máximo");
+            if(r1.hijoIzquierdo1 != null ){
+                System.out.println("dato: "+r1.dato1+nivel);
+                System.out.println("el hijo izquierdo es null");
+                return false;
+            }               
+        }
+        else{
+            System.out.println("dato: "+r1.dato1+nivel);
+            if(r1.hijoIzquierdo1 != null && r1.hijoDerecho1 == null || r1.hijoIzquierdo1 == null && r1.hijoDerecho1 != null){
+            System.out.println("El nivel es: "+nivel);
+            System.out.println("dentro del elif");
+            return false;     
+            }            
+        }
+        System.out.println("FIN");
+        return arbolCompleto(r1.hijoIzquierdo1, nivel+1) && arbolCompleto(r1.hijoDerecho1, nivel+1);
+    }
+for(int i = 0; i < contAux; i ++){
+        
+            else if( cont == 2){
+                encolarPorNivel (cola, r, 1,  2);
+                cont ++;
+            }
+            else if( cont == 3){
+                encolarPorNivel (cola, r, 1, 3);
+                cont++;
+            }
+            else if( cont == 4){
+                encolarPorNivel (cola, r, 1, 4);
+                cont++;
+            }
+            else if( cont == 5){
+                encolarPorNivel (cola, r, 1, 4);
+                cont++;
+            }
+            else if( cont == 6){
+                encolarPorNivel (cola, r, 1, 4);
+                cont++;
+            }          
 */

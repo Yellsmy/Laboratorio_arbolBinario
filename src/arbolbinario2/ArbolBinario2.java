@@ -116,18 +116,23 @@ public class ArbolBinario2 {
                 ArbolB.vaciar();
                 System.out.println("Los árboles están vacios");
                 break;
+                
             case 13:
                 if(ArbolB.arbolCompleto(ArbolB.raiz, 1) == true){
+                    System.out.println("      ¡¡¡FELICIDADES!!!       ");
                     System.out.println("El árbol binario está completo");
+                    System.out.println("            ʕ•́ᴥ•̀ʔっ            ");
                     
                 }
                 else{
                     System.out.println("Árbol binario incompleto");
+                    System.out.println("        ( ˘︹˘ )         ");
                 }
                 System.out.println("El árbol es:");
-                ArbolB.imprimirInOrden(ArbolB.raiz);                   
+                ArbolB.imprimirInOrden(ArbolB.raiz);                
                 break;            
             case 14:
+                System.out.println("El Árbol en orden transversal es:");
                 ArbolB.transversal(cola, ArbolB.raiz);
                 break;
             case 0:
